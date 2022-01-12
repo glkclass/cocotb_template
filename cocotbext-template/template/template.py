@@ -126,8 +126,8 @@ class TemplateCoverProcessor(CoverProcessor):
 
         coverage_report_cfg = {
             'status': {
-                'top.foo': ['new_hits'],
-                'top.bar': ['cover_percentage', 'new_hits']
+                'top.foo': [],
+                'top.bar': ['cover_percentage']
             },
             'final': {'bins': True}
         }
@@ -216,7 +216,6 @@ class TemplateTestBench(TestBench):
     async def run(self):
         """Send transactions. Store expected responses."""
         for trx in self.sequencer(TemplateTrx, self.stop):
-            self.log.info(trx)
             self.agent.monitor.add_expected(trx)
 
             await self.agent.driver.send(trx)
