@@ -1,0 +1,6 @@
+# Makefile RTL list
+
+# TEMPLATE RTL
+SOURCES_TEMPLATE_PATH = rtl
+
+VERILOG_SOURCES += $(SOURCES_TEMPLATE_PATH)/user_lib.sv
