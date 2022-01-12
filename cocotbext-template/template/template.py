@@ -1,10 +1,12 @@
 from typing import Iterable, Mapping
 import numpy as np
+import importlib
 
 from cocotb.triggers import RisingEdge as RE, FallingEdge as FE, Timer
 from cocotb.handle import SimHandleBase
-# from cocotb_coverage.coverage import *
-from cocotb_coverage.coverage import coverage_db
+
+cocotb_coverage = importlib.import_module('cocotb-coverage.cocotb_coverage.coverage')
+coverage_db = cocotb_coverage.coverage_db
 
 from cocotb_util.cocotb_util import assign_probe_str, assign_probe_int
 from cocotb_util.cocotb_driver import BusDriver
@@ -12,7 +14,6 @@ from cocotb_util.cocotb_monitor import BusMonitor
 from cocotb_util.cocotb_agent import BusAgent
 from cocotb_util.cocotb_scoreboard import Scoreboard
 from cocotb_util.cocotb_transaction import Transaction
-
 from cocotb_util.cocotb_coverage import CoverPoint, CoverCross
 from cocotb_util.cocotb_coverage_processor import CoverProcessor
 from cocotb_util.cocotb_testbench import TestBench
@@ -147,7 +148,6 @@ class TemplateCoverProcessor(CoverProcessor):
                 return False
 
         self.add_cover_items(
-
             CoverPoint(
                 "top.foo",
                 xf=lambda trx: trx.foo,
